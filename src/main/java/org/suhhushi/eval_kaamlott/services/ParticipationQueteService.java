@@ -2,9 +2,14 @@ package org.suhhushi.eval_kaamlott.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.suhhushi.eval_kaamlott.dto.AssignChevalierRequest;
 import org.suhhushi.eval_kaamlott.dto.ParticipantDto;
+import org.suhhushi.eval_kaamlott.entities.Chevalier;
 import org.suhhushi.eval_kaamlott.entities.ParticipationQuete;
+import org.suhhushi.eval_kaamlott.entities.Quete;
+import org.suhhushi.eval_kaamlott.repositories.ChevalierRepository;
 import org.suhhushi.eval_kaamlott.repositories.ParticipationQueteRepository;
+import org.suhhushi.eval_kaamlott.repositories.QueteRepository;
 
 import java.util.List;
 
@@ -13,6 +18,12 @@ public class ParticipationQueteService implements IParticipationQueteService {
 
     @Autowired
     private ParticipationQueteRepository participationQueteRepository;
+
+    @Autowired
+    private ChevalierRepository chevalierRepository;
+
+    @Autowired
+    private QueteRepository queteRepository;
 
     public List<ParticipantDto> getParticipantsByQueteId(Long queteId) {
         List<ParticipationQuete> participations = participationQueteRepository.findByQuete_Id(queteId);
@@ -25,5 +36,27 @@ public class ParticipationQueteService implements IParticipationQueteService {
                         p.getStatutParticipation().name()
                 ))
                 .toList();
+    }
+
+    public ParticipationQuete assignerChevalierAQuete(Long idQuete, AssignChevalierRequest request) {
+        Chevalier chevalier = chevalierRepository.findById(request.getIdChevalier())
+                .orElseThrow(() -> new RuntimeException("Chevalier non trouvé"));
+
+        Quete quete = queteRepository.findById(idQuete)
+                .orElseThrow(() -> new RuntimeException("Quête non trouvée"));
+
+        // Vérifier si le chevalier est déjà assigné à la quête
+        boolean exists = participationQueteRepository.existsByChevalierAndQuete(chevalier, quete);
+        if (exists) {
+            throw new RuntimeException("Ce chevalier est déjà assigné à cette quête");
+        }
+
+        ParticipationQuete participation = new ParticipationQuete();
+        participation.setChevalier(chevalier);
+        participation.setQuete(quete);
+        participation.setRole(request.getRole());
+        participation.setStatutParticipation(request.getStatutParticipation());
+
+        return participationQueteRepository.save(participation);
     }
 }
