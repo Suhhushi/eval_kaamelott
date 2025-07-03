@@ -2,7 +2,7 @@ package org.suhhushi.eval_kaamlott.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.suhhushi.eval_kaamlott.dto.AssignChevalierRequest;
+import org.suhhushi.eval_kaamlott.requests.AssignChevalierRequest;
 import org.suhhushi.eval_kaamlott.dto.ParticipantDto;
 import org.suhhushi.eval_kaamlott.entities.Chevalier;
 import org.suhhushi.eval_kaamlott.entities.ParticipationQuete;
@@ -26,6 +26,7 @@ public class ParticipationQueteService implements IParticipationQueteService {
     @Autowired
     private QueteRepository queteRepository;
 
+    @Override
     public List<ParticipantDto> getParticipantsByQueteId(Long queteId) {
         List<ParticipationQuete> participations = participationQueteRepository.findByQuete_Id(queteId);
 
@@ -39,6 +40,7 @@ public class ParticipationQueteService implements IParticipationQueteService {
                 .toList();
     }
 
+    @Override
     public ParticipationQuete assignerChevalierAQuete(Long idQuete, AssignChevalierRequest request) {
         Chevalier chevalier = chevalierRepository.findById(request.getIdChevalier())
                 .orElseThrow(() -> new RuntimeException("Chevalier non trouvé"));
@@ -61,6 +63,7 @@ public class ParticipationQueteService implements IParticipationQueteService {
         return participationQueteRepository.save(participation);
     }
 
+    @Override
     public List<Quete> getQuetesEnCoursByChevalierId(Long chevalierId) {
         List<ParticipationQuete> participations = participationQueteRepository.findByChevalier_IdAndStatutParticipation(
                 chevalierId,

@@ -1,4 +1,4 @@
-package org.suhhushi.eval_kaamlott.dto;
+package org.suhhushi.eval_kaamlott.requests;
 
 import lombok.Getter;
 import lombok.Setter;

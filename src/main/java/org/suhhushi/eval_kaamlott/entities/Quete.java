@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Data
 @Entity
@@ -11,21 +12,19 @@ public class Quete {
     @Id
     private Long id;
 
-    private String nom;
+    private String nomQuete;
+
+    private String description;
 
     @Enumerated(EnumType.STRING)
     private Difficulte difficulte;
 
-    @Enumerated(EnumType.STRING)
-    private Statut statut;
+    private LocalDate dateAssignation;
 
-    // getters, setters, etc.
+    private LocalDate dateEcheance;
 
     public enum Difficulte {
         FACILE, MOYENNE, DIFFICILE, ABERRANTE
     }
-
-    public enum Statut {
-        PAS_ENCORE_COMMENCE, EN_COURS, TERMINEE
-    }
 }
+
