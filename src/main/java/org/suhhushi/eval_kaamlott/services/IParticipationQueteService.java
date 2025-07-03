@@ -6,8 +6,10 @@ import org.suhhushi.eval_kaamlott.entities.ParticipationQuete;
 import org.suhhushi.eval_kaamlott.entities.Quete;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface IParticipationQueteService {
+    boolean retirerChevalierDeQuete(Long idChevalier, Long idQuete);
     List<ParticipantDto> getParticipantsByQueteId(Long queteId);
     ParticipationQuete assignerChevalierAQuete(Long idQuete, AssignChevalierRequest request);
     List<Quete> getQuetesEnCoursByChevalierId(Long chevalierId);

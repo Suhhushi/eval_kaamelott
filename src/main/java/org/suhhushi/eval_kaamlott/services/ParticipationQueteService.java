@@ -1,5 +1,6 @@
 package org.suhhushi.eval_kaamlott.services;
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.suhhushi.eval_kaamlott.requests.AssignChevalierRequest;
@@ -12,6 +13,7 @@ import org.suhhushi.eval_kaamlott.repositories.ParticipationQueteRepository;
 import org.suhhushi.eval_kaamlott.repositories.QueteRepository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -73,4 +75,19 @@ public class ParticipationQueteService implements IParticipationQueteService {
                 .map(ParticipationQuete::getQuete)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    @Transactional
+    public boolean retirerChevalierDeQuete(Long idChevalier, Long idQuete) {
+        Optional<ParticipationQuete> participationOpt = participationQueteRepository
+                .findByChevalier_IdAndQuete_Id(idChevalier, idQuete);
+
+        if (participationOpt.isEmpty()) {
+            return false; // pas trouvé
+        }
+
+        participationQueteRepository.delete(participationOpt.get());
+        return true;
+    }
+
 }
