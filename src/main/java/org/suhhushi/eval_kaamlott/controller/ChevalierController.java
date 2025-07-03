@@ -7,9 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import org.suhhushi.eval_kaamlott.entities.Chevalier;
 import org.suhhushi.eval_kaamlott.entities.Quete;
 import org.suhhushi.eval_kaamlott.repositories.ChevalierRepository;
-import org.suhhushi.eval_kaamlott.services.IChevalierService;
+import org.suhhushi.eval_kaamlott.services.ChevalierService;
 import org.suhhushi.eval_kaamlott.services.IParticipationQueteService;
-import org.suhhushi.eval_kaamlott.services.ParticipationQueteService;
 
 import java.net.URI;
 import java.util.List;
@@ -23,6 +22,9 @@ public class ChevalierController {
 
     @Autowired
     private IParticipationQueteService participationQueteService;
+
+    @Autowired
+    private ChevalierService chevalierService;
 
     @GetMapping
     public List<Chevalier> getAllChevaliers() {
@@ -52,6 +54,11 @@ public class ChevalierController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body("Participation chevalier-quête non trouvée.");
         }
+    }
+
+    @GetMapping("/caracteristique/{caracteristique}")
+    public List<Chevalier> getChevaliersByCaracteristique(@PathVariable String caracteristique) {
+        return chevalierService.findByCaracteristique(caracteristique);
     }
 }
 
