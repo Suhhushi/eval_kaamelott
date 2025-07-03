@@ -10,4 +10,5 @@ import java.util.List;
 public interface ParticipationQueteRepository extends JpaRepository<ParticipationQuete, Long> {
     List<ParticipationQuete> findByQuete_Id(Long queteId);
     boolean existsByChevalierAndQuete(Chevalier chevalier, Quete quete);
+    List<ParticipationQuete> findByChevalier_IdAndStatutParticipation(Long chevalierId, ParticipationQuete.StatutParticipation statut);
 }

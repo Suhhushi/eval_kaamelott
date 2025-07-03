@@ -12,6 +12,7 @@ import org.suhhushi.eval_kaamlott.repositories.ParticipationQueteRepository;
 import org.suhhushi.eval_kaamlott.repositories.QueteRepository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ParticipationQueteService implements IParticipationQueteService {
@@ -58,5 +59,15 @@ public class ParticipationQueteService implements IParticipationQueteService {
         participation.setStatutParticipation(request.getStatutParticipation());
 
         return participationQueteRepository.save(participation);
+    }
+
+    public List<Quete> getQuetesEnCoursByChevalierId(Long chevalierId) {
+        List<ParticipationQuete> participations = participationQueteRepository.findByChevalier_IdAndStatutParticipation(
+                chevalierId,
+                ParticipationQuete.StatutParticipation.EN_COURS
+        );
+        return participations.stream()
+                .map(ParticipationQuete::getQuete)
+                .collect(Collectors.toList());
     }
 }
