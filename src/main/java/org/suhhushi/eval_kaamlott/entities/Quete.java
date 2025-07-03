@@ -1,9 +1,6 @@
 package org.suhhushi.eval_kaamlott.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -12,11 +9,23 @@ import java.time.LocalDate;
 @Entity
 public class Quete {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nomQuete;
-    private String description;
-    private String difficulte;
-    private LocalDate dateAssignation;
-    private LocalDate dateEcheance;
+
+    private String nom;
+
+    @Enumerated(EnumType.STRING)
+    private Difficulte difficulte;
+
+    @Enumerated(EnumType.STRING)
+    private Statut statut;
+
+    // getters, setters, etc.
+
+    public enum Difficulte {
+        FACILE, MOYENNE, DIFFICILE, ABERRANTE
+    }
+
+    public enum Statut {
+        PAS_ENCORE_COMMENCE, EN_COURS, TERMINEE
+    }
 }

@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import org.suhhushi.eval_kaamlott.entities.Chevalier;
 import org.suhhushi.eval_kaamlott.entities.Quete;
 import org.suhhushi.eval_kaamlott.repositories.ChevalierRepository;
+import org.suhhushi.eval_kaamlott.services.IParticipationQueteService;
 import org.suhhushi.eval_kaamlott.services.ParticipationQueteService;
 
 import java.net.URI;
@@ -19,7 +20,7 @@ public class ChevalierController {
     private ChevalierRepository chevalierRepository;
 
     @Autowired
-    private ParticipationQueteService participationQueteService;
+    private IParticipationQueteService participationQueteService;
 
     @GetMapping
     public List<Chevalier> getAllChevaliers() {
