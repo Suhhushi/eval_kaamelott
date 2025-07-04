@@ -1,6 +1,8 @@
 package org.suhhushi.eval_kaamlott.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.suhhushi.eval_kaamlott.entities.Chevalier;
 import org.suhhushi.eval_kaamlott.entities.ParticipationQuete;
 import org.suhhushi.eval_kaamlott.entities.Quete;
@@ -14,4 +16,6 @@ public interface ParticipationQueteRepository extends JpaRepository<Participatio
     List<ParticipationQuete> findByChevalier_IdAndStatutParticipation(Long chevalierId, ParticipationQuete.StatutParticipation statut);
     Optional<ParticipationQuete> findByChevalier_IdAndQuete_Id(Long chevalierId, Long queteId);
 
+    @Query("SELECT pq.quete FROM ParticipationQuete pq GROUP BY pq.quete HAVING COUNT(pq.chevalier) < :min")
+    List<Quete> findQuetesAvecEffectifInferieur(@Param("min") long min);
 }

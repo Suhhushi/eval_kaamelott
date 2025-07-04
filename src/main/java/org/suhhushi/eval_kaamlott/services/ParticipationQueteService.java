@@ -90,4 +90,8 @@ public class ParticipationQueteService implements IParticipationQueteService {
         return true;
     }
 
+    public List<Quete> getQuetesAvecEffectifManquant(long minChevaliers) {
+        return participationQueteRepository.findQuetesAvecEffectifInferieur(minChevaliers);
+    }
+
 }

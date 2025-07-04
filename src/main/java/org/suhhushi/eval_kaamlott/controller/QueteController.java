@@ -43,4 +43,9 @@ public class QueteController {
     public List<Quete> getQuetesDifficulteAberrante() {
         return queteService.getQuetesDifficulteAberrantePasCommenceOuEnCours();
     }
+
+    @GetMapping("/effectif-manquant")
+    public List<Quete> getQuetesAvecEffectifManquant(@RequestParam("minChevaliers") long minChevaliers) {
+        return participationQueteService.getQuetesAvecEffectifManquant(minChevaliers);
+    }
 }
