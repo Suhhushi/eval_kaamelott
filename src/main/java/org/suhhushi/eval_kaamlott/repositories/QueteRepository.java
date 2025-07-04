@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.suhhushi.eval_kaamlott.entities.Chevalier;
 import org.suhhushi.eval_kaamlott.entities.Quete;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface QueteRepository extends JpaRepository<Quete, Long> {
@@ -12,4 +13,12 @@ public interface QueteRepository extends JpaRepository<Quete, Long> {
 
     @Query("SELECT q FROM Quete q ORDER BY DATEDIFF(q.dateEcheance, q.dateAssignation) DESC")
     List<Quete> findQuetesOrderByDureeDesc();
+
+    @Query("""
+            SELECT q FROM Quete q 
+            WHERE q.dateAssignation <= :dateFin 
+              AND q.dateEcheance >= :dateDebut
+            """)
+    List<Quete> findByPeriodeChevauchante(LocalDate dateDebut, LocalDate dateFin);
+
 }

@@ -60,5 +60,7 @@ public class ChevalierController {
     public List<Chevalier> getChevaliersByCaracteristique(@PathVariable String caracteristique) {
         return chevalierService.findByCaracteristique(caracteristique);
     }
+
+
 }
 

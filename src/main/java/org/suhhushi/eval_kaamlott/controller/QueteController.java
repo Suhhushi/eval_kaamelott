@@ -1,8 +1,10 @@
 package org.suhhushi.eval_kaamlott.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.suhhushi.eval_kaamlott.dto.QuetePeriodeDto;
 import org.suhhushi.eval_kaamlott.requests.AssignChevalierRequest;
 import org.suhhushi.eval_kaamlott.dto.ParticipantDto;
 import org.suhhushi.eval_kaamlott.entities.ParticipationQuete;
@@ -10,6 +12,7 @@ import org.suhhushi.eval_kaamlott.entities.Quete;
 import org.suhhushi.eval_kaamlott.services.IParticipationQueteService;
 import org.suhhushi.eval_kaamlott.services.IQueteService;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -52,6 +55,14 @@ public class QueteController {
     @GetMapping("/les-plus-longues")
     public List<Quete> getQuetesLesPlusLongues(@RequestParam(name = "limit", defaultValue = "5") int limit) {
         return queteService.getQuetesLesPlusLongues(limit);
+    }
+
+    @GetMapping("/periode")
+    public List<QuetePeriodeDto> getQuetesParPeriode(
+            @RequestParam("date_debut") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateDebut,
+            @RequestParam("date_fin") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateFin
+    ) {
+        return queteService.getQuetesParPeriode(dateDebut, dateFin);
     }
 
 

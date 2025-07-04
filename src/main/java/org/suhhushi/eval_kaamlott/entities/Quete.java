@@ -23,6 +23,9 @@ public class Quete {
 
     private LocalDate dateEcheance;
 
+    @OneToMany(mappedBy = "quete", cascade = CascadeType.ALL, orphanRemoval = true)
+    private java.util.List<ParticipationQuete> participations = new java.util.ArrayList<>();
+
     public enum Difficulte {
         FACILE, MOYENNE, DIFFICILE, ABERRANTE
     }
