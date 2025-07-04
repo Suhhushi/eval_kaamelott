@@ -46,4 +46,11 @@ public class QueteService implements IQueteService {
         }
     }
 
+    public List<Quete> getQuetesLesPlusLongues(int limit) {
+        return queteRepository.findQuetesOrderByDureeDesc()
+                .stream()
+                .limit(limit)
+                .toList();
+    }
+
 }

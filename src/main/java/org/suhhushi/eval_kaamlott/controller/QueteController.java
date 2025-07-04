@@ -48,4 +48,11 @@ public class QueteController {
     public List<Quete> getQuetesAvecEffectifManquant(@RequestParam("minChevaliers") long minChevaliers) {
         return participationQueteService.getQuetesAvecEffectifManquant(minChevaliers);
     }
+
+    @GetMapping("/les-plus-longues")
+    public List<Quete> getQuetesLesPlusLongues(@RequestParam(name = "limit", defaultValue = "5") int limit) {
+        return queteService.getQuetesLesPlusLongues(limit);
+    }
+
+
 }
