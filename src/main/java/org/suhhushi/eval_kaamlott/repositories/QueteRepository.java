@@ -2,8 +2,10 @@ package org.suhhushi.eval_kaamlott.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.suhhushi.eval_kaamlott.entities.Chevalier;
 import org.suhhushi.eval_kaamlott.entities.Quete;
+import org.suhhushi.eval_kaamlott.enumeration.StatutQuete;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -21,4 +23,5 @@ public interface QueteRepository extends JpaRepository<Quete, Long> {
             """)
     List<Quete> findByPeriodeChevauchante(LocalDate dateDebut, LocalDate dateFin);
 
+    long countByDateAssignationBetween(LocalDate debut, LocalDate fin);
 }

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.suhhushi.eval_kaamlott.dto.ChevalierPerformanceDto;
 import org.suhhushi.eval_kaamlott.entities.Chevalier;
 import org.suhhushi.eval_kaamlott.entities.Quete;
 import org.suhhushi.eval_kaamlott.repositories.ChevalierRepository;
@@ -61,6 +62,10 @@ public class ChevalierController {
         return chevalierService.findByCaracteristique(caracteristique);
     }
 
+    @GetMapping("/rapport-performance/{idChevalier}")
+    public ChevalierPerformanceDto getRapportPerformance(@PathVariable Long idChevalier) {
+        return chevalierService.calculerRapportPerformance(idChevalier);
+    }
 
 }
 
