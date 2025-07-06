@@ -264,14 +264,51 @@ Les données insérées permettent de tester :
 
 ---
 
-## Pour tester
+## 🏁 Getting Started
 
-Un fichier **generated-requests.http** a été créé afin de faciliter les tests, il se situe dans ce dossier -> "src/test/java/generated-requests.http"
+Suivez ces étapes pour démarrer rapidement le projet **Eval Kaamelott** en local.
+
+### 1. Cloner le dépôt
+
+```bash
+git clone https://github.com/votre-utilisateur/eval-kaamelott.git
+cd eval-kaamelott
+```
+
+### 2. Configurer la base de données
+
+Assurez-vous d’avoir une base MySQL nommée `kaamelott` :
+
+Utilisé les script SQL données précédement, pour imposter la base de données et le jeux de données
+
+Puis configurez vos identifiants dans le fichier :
+
+```
+src/main/resources/application.properties
+```
+
+```properties
+spring.datasource.username=VotreNomUtilisateur
+spring.datasource.password=VotreMotDePasse
+```
+
+### 4. Lancer l’application
+
+Utilisez Maven ou votre IDE :
+
+L’application sera accessible sur :
+👉 [http://localhost:8080](http://localhost:8080)
+
+### 5. Accéder à la documentation Swagger
+
+Une documentation interactive est disponible ici :
+🔗 [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
 
 ---
 
-## Swagger 
+> ✅ **Astuce** : Pour tester rapidement les endpoints, utilisez le fichier `generated-requests.http` dans `src/test/java`.
 
-Un **Swagger** a été mis en place sur le projet, voici le lien pour y accéder quand le projet est lancé : [Swagger](http://localhost:8080/swagger-ui/index.html#/)
+---
+
   
 
