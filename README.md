@@ -169,7 +169,7 @@ CREATE TABLE IF NOT EXISTS `chevalier` (
   `caracteristique_principale` varchar(255) DEFAULT NULL,
   `niveau_bravoure` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-);
+)ENGINE=INNODB;
 
 -- Données table `chevalier`
 INSERT INTO `chevalier` (`id`, `nom`, `titre`, `caracteristique_principale`, `niveau_bravoure`) VALUES
@@ -192,7 +192,7 @@ CREATE TABLE IF NOT EXISTS `quete` (
   `date_assignation` date NOT NULL,
   `date_echeance` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=INNODB;
 
 -- Données table `quete`
 INSERT INTO `quete` (`id`, `nom_quete`, `description`, `difficulte`, `date_assignation`, `date_echeance`) VALUES
@@ -216,7 +216,7 @@ CREATE TABLE IF NOT EXISTS `participation_quete` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `uk_id_chevalier_id_quete` (`id_chevalier`,`id_quete`),
   KEY `id_quete` (`id_quete`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=INNODB;
 
 -- Données table `participation_quete`
 INSERT INTO `participation_quete` (`id`, `id_chevalier`, `id_quete`, `role`, `statut_participation`, `commentaire_roi`) VALUES
@@ -261,4 +261,5 @@ Les données insérées permettent de tester :
 * Les endpoints qui gèrent les **participations aux quêtes**, y compris les rôles (CHEF\_EXPEDITION, ACCOLYTE, RESERVE) et les statuts de participation.
 * Les filtres sur les quêtes (dates, difficultés).
 * La gestion des contraintes (pas de participation à une quête inexistante, suppression en cascade des participations liées à un chevalier ou une quête supprimée).
+  
 
