@@ -271,7 +271,7 @@ Suivez ces étapes pour démarrer rapidement le projet **Eval Kaamelott** en loc
 ### 1. Cloner le dépôt
 
 ```bash
-git clone https://github.com/votre-utilisateur/eval-kaamelott.git
+git clone [https://github.com/votre-utilisateur/eval-kaamelott.git](https://github.com/Suhhushi/eval_kaamelott)
 cd eval-kaamelott
 ```
 
