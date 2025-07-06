@@ -1,7 +1,3 @@
-Voici un exemple complet de fichier **README.md** adapté à ton projet Spring Boot **Eval Kaamelott**. Il décrit l'objectif, les fonctionnalités principales, la configuration, et comment lancer le projet.
-
----
-
 # Eval Kaamelott
 
 ## Description
@@ -138,8 +134,3 @@ Le serveur démarre par défaut sur [http://localhost:8080](http://localhost:808
 * Le projet utilise des relations JPA entre `Chevalier`, `Quete` et `ParticipationQuete` pour gérer les participations.
 * Les validations basiques sont gérées dans les services.
 * Le format JSON est utilisé pour les échanges API.
-
----
-
-Si tu souhaites, je peux aussi t’aider à générer un fichier Swagger/OpenAPI pour documenter automatiquement tes endpoints.
-Veux-tu ?
