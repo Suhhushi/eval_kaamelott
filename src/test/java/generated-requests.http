@@ -1,0 +1,85 @@
+### Test get all chevalier
+GET http://localhost:8080/chevaliers
+
+<> 2025-07-06T114121.200.json
+
+### Test create chevalier
+POST http://localhost:8080/chevaliers
+Content-Type: application/json
+
+{
+  "nom": "Perceval",
+  "titre": "Chevalier",
+  "caracteristiquePrincipale": "Naïf",
+  "niveauBravoure": 5
+}
+
+<> 2025-07-06T114121.201.json
+
+###
+GET http://localhost:8080/quetes/2/participants
+
+<> 2025-07-06T114121-1.200.json
+
+###
+POST http://localhost:8080/quetes/2/assigner-chevalier
+Content-Type: application/json
+
+{
+  "idChevalier": 1,
+  "role": "CHEF_EXPEDITION",
+  "statutParticipation": "EN_COURS"
+}
+
+<> 2025-07-06T114121-2.200.json
+
+###
+GET http://localhost:8080/chevaliers/1/quetes-en-cours
+
+<> 2025-07-06T114121-3.200.json
+
+###
+GET http://localhost:8080/quetes/difficulte-aberrante
+
+<> 2025-07-06T114121-4.200.json
+
+###
+GET http://localhost:8080/chevaliers/1/retirer-quete/2
+
+<> 2025-07-06T114121.200.txt
+
+###
+GET http://localhost:8080/chevaliers/caracteristique/Gourmand
+
+<> 2025-07-06T114121-5.200.json
+
+
+###
+GET http://localhost:8080/quetes/effectif-manquant?
+    minChevaliers=5
+
+<> 2025-07-06T114121-6.200.json
+
+###
+GET http://localhost:8080/quetes/les-plus-longues?
+    limit=3
+
+<> 2025-07-06T114121-7.200.json
+
+###
+GET http://localhost:8080/quetes/periode?date_debut=2025-07-01&date_fin=2025-07-05
+
+<> 2025-07-06T114122.200.json
+
+
+###
+GET http://localhost:8080/chevaliers/rapport-performance/2
+
+<> 2025-07-06T114122-1.200.json
+
+###
+GET http://localhost:8080/stats/rapport-activite-mensuel?
+    mois=07&
+    annee=2025
+
+<> 2025-07-06T114122-2.200.json
