@@ -279,7 +279,7 @@ cd eval-kaamelott
 
 Assurez-vous d’avoir une base MySQL nommée `kaamelott` :
 
-Utilisé les script SQL données précédement, pour imposter la base de données et le jeux de données
+Utilisé les script SQL données précédement, pour importer la base de données et le jeux de données
 
 Puis configurez vos identifiants dans le fichier :
 
