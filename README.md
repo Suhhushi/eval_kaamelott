@@ -89,14 +89,6 @@ Adapter le nom d’utilisateur et mot de passe selon votre installation MySQL.
 
 ### Lancer le projet
 
-```bash
-# Compiler et packager
-mvn clean package
-
-# Lancer l'application
-mvn spring-boot:run
-```
-
 Le serveur démarre par défaut sur [http://localhost:8080](http://localhost:8080).
 
 ---
