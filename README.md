@@ -267,5 +267,11 @@ Les données insérées permettent de tester :
 ## Pour tester
 
 Un fichier **generated-requests.http** a été créé afin de faciliter les tests, il se situe dans ce dossier -> "src/test/java/generated-requests.http"
+
+---
+
+## Swagger 
+
+Un **Swagger** a été mis en place sur le projet, voici le lien pour y accéder quand le projet est lancé : [Swagger](http://localhost:8080/swagger-ui/index.html#/)
   
 
