@@ -261,5 +261,11 @@ Les données insérées permettent de tester :
 * Les endpoints qui gèrent les **participations aux quêtes**, y compris les rôles (CHEF\_EXPEDITION, ACCOLYTE, RESERVE) et les statuts de participation.
 * Les filtres sur les quêtes (dates, difficultés).
 * La gestion des contraintes (pas de participation à une quête inexistante, suppression en cascade des participations liées à un chevalier ou une quête supprimée).
+
+---
+
+## Pour tester
+
+Un fichier **generated-requests.http** a été créé afin de faciliter les tests, il se situe dans ce dossier -> "src/test/java/generated-requests.http"
   
 
