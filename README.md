@@ -68,6 +68,13 @@ Elle permet de gérer les chevaliers, leurs quêtes, les participations, ainsi q
 * MySQL installé et une base de données `kaamelott` créée
 * Maven installé ou IDE compatible Maven
 
+### 1. Cloner le dépôt
+
+```bash
+git clone https://github.com/Suhhushi/eval_kaamelott
+cd eval-kaamelott
+```
+
 ### Configuration de la base de données
 
 Dans `src/main/resources/application.properties` :
@@ -82,60 +89,6 @@ spring.jpa.properties.hibernate.format_sql=true
 ```
 
 Adapter le nom d’utilisateur et mot de passe selon votre installation MySQL.
-
-### Lancer le projet
-
-Le serveur démarre par défaut sur [http://localhost:8080](http://localhost:8080).
-
----
-
-## Exemple de requêtes
-
-* Obtenir la liste de tous les chevaliers :
-  `GET http://localhost:8080/chevaliers`
-
-* Créer un chevalier (exemple JSON) :
-  `POST http://localhost:8080/chevaliers`
-
-  ```json
-  {
-    "nom": "Lancelot",
-    "titre": "Chevalier de la Table Ronde",
-    "caracteristiquePrincipale": "Bravoure"
-  }
-  ```
-
-* Assigner un chevalier à une quête :
-  `POST http://localhost:8080/quetes/1/assigner-chevalier`
-
-  ```json
-  {
-    "idChevalier": 1,
-    "role": "COMBATTANT",
-    "statutParticipation": "EN_COURS"
-  }
-  ```
-
----
-
-## Structure du projet
-
-* `controller` : classes REST exposant les endpoints
-* `services` : logique métier
-* `repositories` : interfaces JPA pour accéder aux données
-* `entities` : entités JPA représentant les tables
-* `dto` et `requests` : classes pour les échanges avec l’API
-* `enumeration` : enums pour statuts, rôles, etc.
-
----
-
-## Remarques
-
-* Le projet utilise des relations JPA entre `Chevalier`, `Quete` et `ParticipationQuete` pour gérer les participations.
-* Les validations basiques sont gérées dans les services.
-* Le format JSON est utilisé pour les échanges API.
-
----
 
 ## Initialisation de la base de données `kaamelott`
 
@@ -250,11 +203,61 @@ COMMIT;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 ```
 
+### Lancer le projet
+
+Le serveur démarre par défaut sur [http://localhost:8080](http://localhost:8080).
+
+---
+
+## Exemple de requêtes
+
+* Obtenir la liste de tous les chevaliers :
+  `GET http://localhost:8080/chevaliers`
+
+* Créer un chevalier (exemple JSON) :
+  `POST http://localhost:8080/chevaliers`
+
+  ```json
+  {
+    "nom": "Lancelot",
+    "titre": "Chevalier de la Table Ronde",
+    "caracteristiquePrincipale": "Bravoure"
+  }
+  ```
+
+* Assigner un chevalier à une quête :
+  `POST http://localhost:8080/quetes/1/assigner-chevalier`
+
+  ```json
+  {
+    "idChevalier": 1,
+    "role": "COMBATTANT",
+    "statutParticipation": "EN_COURS"
+  }
+  ```
+
+---
+
+## Structure du projet
+
+* `controller` : classes REST exposant les endpoints
+* `services` : logique métier
+* `repositories` : interfaces JPA pour accéder aux données
+* `entities` : entités JPA représentant les tables
+* `dto` et `requests` : classes pour les échanges avec l’API
+* `enumeration` : enums pour statuts, rôles, etc.
+
+---
+
+## Remarques
+
+* Le projet utilise des relations JPA entre `Chevalier`, `Quete` et `ParticipationQuete` pour gérer les participations.
+* Les validations basiques sont gérées dans les services.
+* Le format JSON est utilisé pour les échanges API.
+
 ---
 
 ## Jeu de données (JDD) pour tests des endpoints
-
-Les données insérées permettent de tester :
 
 * Les endpoints qui listent, créent, modifient et suppriment des **chevaliers**.
 * Les endpoints qui listent, créent, modifient et suppriment des **quêtes**.
@@ -264,42 +267,7 @@ Les données insérées permettent de tester :
 
 ---
 
-## 🏁 Getting Started
-
-Suivez ces étapes pour démarrer rapidement le projet **Eval Kaamelott** en local.
-
-### 1. Cloner le dépôt
-
-```bash
-git clone https://github.com/Suhhushi/eval_kaamelott
-cd eval-kaamelott
-```
-
-### 2. Configurer la base de données
-
-Assurez-vous d’avoir une base MySQL nommée `kaamelott` :
-
-Utilisé les script SQL données précédement, pour importer la base de données et le jeux de données
-
-Puis configurez vos identifiants dans le fichier :
-
-```
-src/main/resources/application.properties
-```
-
-```properties
-spring.datasource.username=VotreNomUtilisateur
-spring.datasource.password=VotreMotDePasse
-```
-
-### 4. Lancer l’application
-
-Utilisez Maven ou votre IDE :
-
-L’application sera accessible sur :
-👉 [http://localhost:8080](http://localhost:8080)
-
-### 5. Accéder à la documentation Swagger
+## 5. Accéder à la documentation Swagger
 
 Une documentation interactive est disponible ici :
 🔗 [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
